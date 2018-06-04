@@ -47,3 +47,43 @@ Cookie
 ```javascript
   document.cookie = 'age=16;path=/;expires'+ new Date('2018-12-01');
 ```
+
+### Cookie的解析
+
+```javascript
+  //原生js解析cookie
+  document.cookie = 'name=xiaoming';
+  document.cookie = 'age=16';
+  var cookie = document.cookie;
+  var arr = cookie.split(';');
+  var o = {};
+  for(var i = 0;i<arr.length;i++){
+    var tmp = arr[i].split('=');
+    o[tmp[0]] = tmp[1];
+  }
+```
+
+---
+
+```javascript
+  //jQuery插件解析cookie
+  <script src='引入jQuery'><script>
+  <script src='引入jQuery-cookie插件'><script>
+  //1设置
+  $.cookie('age',16);
+  $.cookie('name','xiaoming');
+
+  //2完整设置
+  $.cookie('gender','female',{
+    path:'/',
+    expires:7
+  });
+
+  //读取cookie
+  console.log($.cookie('name'));
+
+  //删除
+  $.removeCookie('name',{
+    path:'/'
+  })
+```
